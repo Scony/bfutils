@@ -12,7 +12,6 @@ public:
 
 protected:
   std::string message;
-
 };
 
 #endif

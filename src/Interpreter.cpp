@@ -17,7 +17,7 @@ Interpreter::Interpreter(string code) throw(Exception)
       if(code[i] == ']')
 	{
 	  if(hill.empty())
-	    throw Exception("Unexpected bracket !");
+	    throw Exception("Unexpected bracket");
 	  else
 	    {
 	      hash[hill.top()] = i;
@@ -27,7 +27,7 @@ Interpreter::Interpreter(string code) throw(Exception)
 	}
     }
   if(!hill.empty())
-    throw Exception("Too much brackets !");
+    throw Exception("Too much brackets");
 }
 
 Interpreter::~Interpreter()

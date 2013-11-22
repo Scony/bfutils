@@ -3,10 +3,19 @@
 
 #include<iostream>
 
-//todo: strategia oszczedzania pamieci na skrajach
-
 class Memory
 {
+public:
+  Memory();
+  ~Memory();
+  void add();
+  void sub();
+  void write(unsigned char c);
+  unsigned char read();
+  void next();
+  void previous();
+
+protected:
   struct Cell
   {
     unsigned char * cell;
@@ -16,15 +25,6 @@ class Memory
     ~Cell();
   };
   Cell * head;
- public:
-  Memory();
-  ~Memory();
-  void add();
-  void sub();
-  void write(unsigned char val);
-  unsigned char read();
-  void next();
-  void previous();
 };
 
 #endif

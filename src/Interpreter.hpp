@@ -6,17 +6,20 @@
 #include "Exception.hpp"
 #include "Memory.hpp"
 
+// todo: hash array -> map or hash_map
+
 class Interpreter
 {
-  std::string code;
-  int * hash;
-  int hashLen;
-  Memory memory;
- public:
+public:
   Interpreter(std::string code)
     throw(Exception);
   ~Interpreter();
   void run();
+protected:
+  Memory memory;
+  int hashLen;
+  int * hash;
+  std::string code;
 };
 
 #endif

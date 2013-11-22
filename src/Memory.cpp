@@ -42,9 +42,9 @@ void Memory::sub()
   (*(head->cell))--;
 }
 
-void Memory::write(unsigned char val)
+void Memory::write(unsigned char c)
 {
-  *(head->cell) = val;
+  *(head->cell) = c;
 }
 
 unsigned char Memory::read()
@@ -62,7 +62,8 @@ void Memory::next()
       head->next->previous = head;
       head = head->next;
     }
-  if(!head->previous->previous && *(head->previous->cell)==0)
+
+  if(!head->previous->previous && *(head->previous->cell) == 0)
     {
       head->previous->next = NULL;
       delete head->previous;
@@ -80,7 +81,8 @@ void Memory::previous()
       head->previous->next = head;
       head = head->previous;
     }
-    if(!head->next->next && *(head->next->cell)==0)
+
+  if(!head->next->next && *(head->next->cell) == 0)
     {
       head->next->previous = NULL;
       delete head->next;
