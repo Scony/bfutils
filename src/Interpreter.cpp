@@ -63,7 +63,7 @@ void Interpreter::run()
 	break;
       case '[':
 	if(!memory.read())
-	  i = hash[i] + 1;
+	  i = hash[i];
 	break;
       case ']':
 	if(memory.read())
