@@ -54,7 +54,8 @@ void Interpreter::run()
 	break;
       case ',':
 	unsigned char c;
-	cin >> c;
+	if(!(cin >> c))
+	  c = 255;
 	memory.write(c);
 	break;
       case '.':
