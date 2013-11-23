@@ -12,6 +12,6 @@ In progress
 
 Todo
 =====
-* bfb (debugger)
+* bfd (debugger)
 * bfc (compiler)
 * bfg (graphical image display)
