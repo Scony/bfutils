@@ -4,8 +4,12 @@
 #include "Exception.hpp"
 #include "File.hpp"
 #include "Interpreter.hpp"
+#include "SmallInterpreter.hpp"
 
 using namespace std;
+
+// TODO: []]] issue in interactive mode
+// TODO: shared memory for all interpreter calls
 
 int main(int argc, char * argv[])
 {
@@ -46,25 +50,44 @@ int main(int argc, char * argv[])
 
       if(code)
 	{
-      	  Interpreter i(value);
-      	  i.run();
+      	  SmallInterpreter si(value);
+      	  si.run();
 	}
       else if(file)
 	{
 	  File f(value);
-	  Interpreter i(f.toString());
-	  i.run();
+	  SmallInterpreter si(f.toString());
+	  si.run();
 	}
       else if(isatty(0))
-	throw Exception("Interactive mode unimplemented");
+	{
+	  string code = "";
+	  string line;
+	  cout << ">>> ";
+	  while(getline(cin,line))
+	    {
+	      try
+		{
+		  SmallInterpreter si(code + line);
+		  si.run();
+		  code = "";
+		  cout << ">>> ";
+		}
+	      catch(Exception e)
+		{
+		  code += line;
+		  cout << "... ";
+		}
+	    }
+	}
       else
 	{
 	  string content = "";
 	  string line;
 	  while(getline(cin,line))
 	    content += line;
-	  Interpreter i(content);
-	  i.run();
+	  SmallInterpreter si(content);
+	  si.run();
 	}
     }
   catch(Exception e)

@@ -3,22 +3,14 @@
 
 #include <iostream>
 
-#include "Exception.hpp"
-#include "Memory.hpp"
-
-// todo: hash array -> map or hash_map
-
 class Interpreter
 {
 public:
-  Interpreter(std::string code)
-    throw(Exception);
-  ~Interpreter();
-  void run();
+  Interpreter(std::string code);
+  virtual ~Interpreter();
+  virtual void run() = 0;
+
 protected:
-  Memory memory;
-  int hashLen;
-  int * hash;
   std::string code;
 };
 
