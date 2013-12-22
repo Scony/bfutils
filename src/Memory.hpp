@@ -4,7 +4,6 @@
 class Memory
 {
 public:
-  // Memory();
   virtual ~Memory();
   virtual void add() = 0;
   virtual void sub() = 0;

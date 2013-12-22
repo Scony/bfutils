@@ -10,6 +10,7 @@
 using namespace std;
 
 // TODO: C-c should not kill app while interpreter mode is filling (...)
+// TODO: Do not use cout in (..)Interpreter, pass it by parameter rather
 
 int main(int argc, char * argv[])
 {
@@ -79,7 +80,7 @@ int main(int argc, char * argv[])
 		  if(e.getCode())
 		    {
 		      code = "";
-		      cout << "Error: " << e.getMessage() << "\n>>> ";
+		      cerr << "Error: " << e.getMessage() << "\n>>> ";
 		    }
 		  else
 		    {

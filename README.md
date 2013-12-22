@@ -1,7 +1,7 @@
 bfutils
 =======
 
-Brainfuck utilities (interpreter, compiler, debugger, display)
+Brainfuck utilities (interpreter, compiler, debugger)
 
 Done
 ======
@@ -14,4 +14,3 @@ Todo
 =====
 * bfd (debugger)
 * bfc (compiler)
-* bfg (graphical image display)
