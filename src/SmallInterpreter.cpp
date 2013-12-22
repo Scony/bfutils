@@ -15,7 +15,7 @@ SmallInterpreter::SmallInterpreter(string code) throw(Exception) :
       if(code[i] == ']')
 	{
 	  if(hill.empty())
-	    throw Exception("Unexpected bracket");
+	    throw Exception("Unexpected bracket",1);
 	  else
 	    {
 	      hash[hill.top()] = i;

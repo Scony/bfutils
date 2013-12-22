@@ -8,7 +8,6 @@
 
 using namespace std;
 
-// TODO: []]] issue in interactive mode
 // TODO: shared memory for all interpreter calls
 
 int main(int argc, char * argv[])
@@ -75,8 +74,16 @@ int main(int argc, char * argv[])
 		}
 	      catch(Exception e)
 		{
-		  code += line;
-		  cout << "... ";
+		  if(e.getCode())
+		    {
+		      code = "";
+		      cout << "Error: " << e.getMessage() << "\n>>> ";
+		    }
+		  else
+		    {
+		      code += line;
+		      cout << "... ";
+		    }
 		}
 	    }
 	}
