@@ -1,12 +1,24 @@
 #include <stack>
 
 #include "SmallInterpreter.hpp"
+#include "DynamicMemory.hpp"
 
 using namespace std;
 
-SmallInterpreter::SmallInterpreter(string code) throw(Exception) :
+SmallInterpreter::SmallInterpreter(string code, Memory * memory) throw(Exception) :
   Interpreter(code)
 {
+  if(memory)
+    {
+      this->memory = memory;
+      memoryOwner = false;
+    }
+  else
+    {
+      this->memory = new DynamicMemory;
+      memoryOwner = true;
+    }
+
   stack<int> hill;
   for(int i = 0; i < (int)code.length(); i++)
     {
@@ -30,6 +42,8 @@ SmallInterpreter::SmallInterpreter(string code) throw(Exception) :
 
 SmallInterpreter::~SmallInterpreter()
 {
+  if(memoryOwner)
+    delete memory;
 }
 
 void SmallInterpreter::run()
@@ -38,32 +52,32 @@ void SmallInterpreter::run()
     switch(code[i])
       {
       case '+':
-	memory.add();
+	memory->add();
 	break;
       case '-':
-	memory.sub();
+	memory->sub();
 	break;
       case '>':
-	memory.next();
+	memory->next();
 	break;
       case '<':
-	memory.previous();
+	memory->previous();
 	break;
       case ',':
 	unsigned char c;
 	if(!(cin >> c))
 	  c = 255;
-	memory.write(c);
+	memory->write(c);
 	break;
       case '.':
-	cout << memory.read();
+	cout << memory->read();
 	break;
       case '[':
-	if(!memory.read())
+	if(!memory->read())
 	  i = hash[i];
 	break;
       case ']':
-	if(memory.read())
+	if(memory->read())
 	  i = hash[i];
 	break;
       }

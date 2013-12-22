@@ -1,6 +1,6 @@
 CC=g++ -Wall
 
-SOURCES=bf.cpp Exception.cpp File.cpp Interpreter.cpp Memory.cpp SmallInterpreter.cpp
+SOURCES=bf.cpp Exception.cpp File.cpp Interpreter.cpp Memory.cpp DynamicMemory.cpp SmallInterpreter.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: bf

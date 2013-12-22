@@ -5,10 +5,11 @@
 #include "File.hpp"
 #include "Interpreter.hpp"
 #include "SmallInterpreter.hpp"
+#include "DynamicMemory.hpp"
 
 using namespace std;
 
-// TODO: shared memory for all interpreter calls
+// TODO: C-c should not kill app while interpreter mode is filling (...)
 
 int main(int argc, char * argv[])
 {
@@ -60,6 +61,7 @@ int main(int argc, char * argv[])
 	}
       else if(isatty(0))
 	{
+	  DynamicMemory dm;
 	  string code = "";
 	  string line;
 	  cout << ">>> ";
@@ -67,7 +69,7 @@ int main(int argc, char * argv[])
 	    {
 	      try
 		{
-		  SmallInterpreter si(code + line);
+		  SmallInterpreter si(code+line,&dm);
 		  si.run();
 		  code = "";
 		  cout << ">>> ";

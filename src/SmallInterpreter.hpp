@@ -10,13 +10,14 @@
 class SmallInterpreter : public Interpreter
 {
 public:
-  SmallInterpreter(std::string code)
+  SmallInterpreter(std::string code, Memory * memory = NULL)
     throw(Exception);
   ~SmallInterpreter();
   void run();
 
 private:
-  Memory memory;
+  Memory * memory;
+  bool memoryOwner;
   std::map<int, int> hash;
 };
 
